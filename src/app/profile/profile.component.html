@@ -1,12 +1,29 @@
-<h1>Profile</h1>
-<div *ngIf="user">
-  <p>id : {{ user.id }}</p>
-  <p>username : {{ user.username }}</p>
-  <ul>
-    <li *ngFor="let signLog of user.signLogs">
-      {{ signLog.ip }} | {{ signLog.date }}
-    </li>
-  </ul>
-</div>
+<div class="page-content">
+  <h1>Profile</h1>
+  <div>
+    <p *ngIf="user">Id : {{ user.id }}</p>
+    <p *ngIf="user">Username : {{ user.username }}</p>
+    <h2>Connexion history :</h2>
+    <div class="mat-elevation-z8" style="width:300px;">
+      <table mat-table [dataSource]="dataSource" matSort style="width:100%;">
+        <ng-container matColumnDef="ip">
+          <th mat-header-cell *matHeaderCellDef> Ip address </th>
+          <td mat-cell *matCellDef="let signLog"> {{signLog.ip}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let signLog"> {{signLog.date}} </td>
+        </ng-container>
 
-{{ errorMsg }}
+        <tr mat-header-row *matHeaderRowDef="['ip', 'date']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['ip', 'date'];"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="2">No data"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  {{ errorMsg }}
+</div>

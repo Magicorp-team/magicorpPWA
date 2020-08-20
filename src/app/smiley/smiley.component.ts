@@ -21,7 +21,7 @@ export class SmileyComponent implements OnInit {
     { name: '¯\_(ツ)_/¯', val: '¯\_(ツ)_/¯', copy: false }
   ];
 
-  letext = "";
+  text = "";
 
   constructor() { }
 

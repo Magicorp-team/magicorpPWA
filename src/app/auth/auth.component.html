@@ -1,21 +1,68 @@
-<div [style.display]="isNew ? 'none'  : 'block'" layout="column" layout-align="top center">
-  <h1>Sign in</h1>
-  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Username" formControlName="username" minLength="1" maxlength="126" required>
-    <input type="password" placeholder="Password" formControlName="password">
-    <button type="submit" [disabled]="!signInForm.valid">Sign in</button>
-    <p>{{ authMsg }}</p>
-    <button routerLink="/signup" [queryParams]="{lastUrl: lastUrl}">Create new account</button>
-  </form>
+<div [style.display]="isNew ? 'none' : 'flex'" class="page-content">
+  <mat-card style="max-width:250px;">
+    <mat-card-header style="display:flex;justify-content: center;">
+      <mat-card-title>Sign in</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" align="center">
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your username</mat-label>
+          <input matInput formControlName="username" #username minLength="1" maxlength="126" required>
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-hint align="end">{{username.value?.length || 0}}/126</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" #password>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <p>{{ authMsg }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button routerLink="/signup" [queryParams]="{lastUrl: lastUrl}">Create new account</button>
+        <button mat-raised-button type="submit" [disabled]="!signInForm.valid">Sign in</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
 </div>
 
-<div [style.display]="isNew ? 'block' : 'none'" layout="column" layout-align="top center">
-  <h1>Sign up</h1>
-  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Username" formControlName="username" minLength="1" maxlength="126" required>
-    <input type="password" placeholder="Password" formControlName="password" name="password" compare-field="passwordConfirm" parent="true" required>
-    <input type="password" placeholder="Password confirm" formControlName="passwordConfirm" name="passwordConfirm" compare-field="password" required>
-    <button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
-    <p>{{ authMsg }}</p>
-  </form>
+<div [style.display]="isNew ? 'flex' : 'none'" class="page-content">
+  <mat-card style="max-width:250px;">
+    <mat-card-header style="display:flex;justify-content: center;">
+      <mat-card-title>Sign up</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" align="center">
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your username</mat-label>
+          <input matInput formControlName="username" #username minLength="1" maxlength="126" required>
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-hint align="end">{{username.value?.length || 0}}/126</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" #password compare-field="passwordConfirm" parent="true" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordConfirm" #password compare-field="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <p>{{ authMsg }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
 </div>

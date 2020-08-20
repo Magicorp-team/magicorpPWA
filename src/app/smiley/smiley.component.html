@@ -1,20 +1,20 @@
-<div layout="column" layout-align="top center">
+<div class="page-content">
   <h1>Les smiley :)</h1>
-  <div layout="rows" layout-align="top center" layout-padding layout-wrap >
-      <div *ngFor="let smiley of smileys" flex="none" style="background: #fff;" layout-margin>
+  <div style="display:flex;-webkit-flex-wrap: wrap;flex-wrap: wrap;">
+      <div *ngFor="let smiley of smileys" class="mat-elevation-z4" style="background:#fff;padding:0 8px;margin:8px;border-radius:4px;">
         {{ smiley.name }}
-        <button class="copybtn" attr.data-clipboard-text="{{smiley.val}}" aria-label="copy smiley" [ngSwitch]="smiley.copy" (click)="smiley.copy=true">
-          <img *ngSwitchCase="false" style="pointer-events: none;" src="/assets/img/icons/clipboard-text.svg">
-          <img *ngSwitchCase="true" style="pointer-events: none;" src="/assets/img/icons/clipboard-check.svg">
+        <button mat-icon-button class="copybtn" attr.data-clipboard-text="{{smiley.val}}" aria-label="Copy smiley" [ngSwitch]="smiley.copy" (click)="smiley.copy=true">
+          <mat-icon *ngSwitchCase="true" style="pointer-events: none;">assignment_turned_in</mat-icon>
+          <mat-icon *ngSwitchCase="false" style="pointer-events: none;">assignment</mat-icon>
         </button>
       </div>
   </div>
-</div>
-<div layout-align="top center" layout-padding layout-margin>
-  <h2>Tester le smiley ici :</h2>
   <div>
-    <label>le smiley :</label>
-    <textarea type="text" maxlength="2000" rows="5" [(ngModel)]="letext"></textarea>
+    <h1>Tester le smiley :</h1>
+    <div>
+      <mat-label>Coller le smiley ici :</mat-label><br>
+      <textarea matInput class="mat-elevation-z4" style="background-color:#fff;border-radius:4px;" maxlength="2000" rows="5" [(ngModel)]="text"></textarea>
+    </div>
+    <h4>Le résultat : <pre style="font: 400 13.3333px Arial;">{{ text }}</pre></h4>
   </div>
-  <h4>le résultat : <pre style="font: 400 13.3333px Arial;">{{ letext }}</pre></h4>
 </div>

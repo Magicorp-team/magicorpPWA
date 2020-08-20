@@ -15,6 +15,7 @@ export class AuthComponent implements OnInit {
   isNew = false;
   authMsg = '';
   lastUrl = '';
+  hide = true;
   signInForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
