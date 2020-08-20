@@ -1,0 +1,12 @@
+<h1>Profile</h1>
+<div *ngIf="user">
+  <p>id : {{ user.id }}</p>
+  <p>username : {{ user.username }}</p>
+  <ul>
+    <li *ngFor="let signLog of user.signLogs">
+      {{ signLog.ip }} | {{ signLog.date }}
+    </li>
+  </ul>
+</div>
+
+{{ errorMsg }}

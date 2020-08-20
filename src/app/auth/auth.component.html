@@ -1,0 +1,21 @@
+<div [style.display]="isNew ? 'none'  : 'block'" layout="column" layout-align="top center">
+  <h1>Sign in</h1>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Username" formControlName="username" minLength="1" maxlength="126" required>
+    <input type="password" placeholder="Password" formControlName="password">
+    <button type="submit" [disabled]="!signInForm.valid">Sign in</button>
+    <p>{{ authMsg }}</p>
+    <button routerLink="/signup" [queryParams]="{lastUrl: lastUrl}">Create new account</button>
+  </form>
+</div>
+
+<div [style.display]="isNew ? 'block' : 'none'" layout="column" layout-align="top center">
+  <h1>Sign up</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Username" formControlName="username" minLength="1" maxlength="126" required>
+    <input type="password" placeholder="Password" formControlName="password" name="password" compare-field="passwordConfirm" parent="true" required>
+    <input type="password" placeholder="Password confirm" formControlName="passwordConfirm" name="passwordConfirm" compare-field="password" required>
+    <button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
+    <p>{{ authMsg }}</p>
+  </form>
+</div>

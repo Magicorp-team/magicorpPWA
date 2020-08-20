@@ -1,0 +1,13 @@
+<h1>{{ title | titlecase }}</h1>
+<nav>
+  <a class="button" routerLink="/" routerLinkActive="activebutton" [routerLinkActiveOptions]="{ exact: true }">Home</a> |
+  <a *ngIf="!authService.getToken()" class="button" routerLink="/signin" routerLinkActive="activebutton">Sign in</a> |
+  <a *ngIf="!authService.getToken()" class="button" routerLink="/signup" routerLinkActive="activebutton">Sign up</a> |
+  <a *ngIf="authService.getToken()" class="button" routerLink="/profile" routerLinkActive="activebutton">Profile</a> |
+  <a *ngIf="authService.getToken()" class="button" routerLink="/signout" routerLinkActive="activebutton">Sign out</a> |
+  <a class="button" routerLink="/team" routerLinkActive="activebutton">Team</a> |
+  <a class="button" routerLink="/smiley" routerLinkActive="activebutton">Smiley</a> |
+  <a class="button" routerLink="/arktuto" routerLinkActive="activebutton">Ark tuto</a> |
+  <a class="button" href="https://batrenis.magicorp.fr" routerLinkActive="activebutton">Batrenis</a>
+</nav>
+<router-outlet></router-outlet>

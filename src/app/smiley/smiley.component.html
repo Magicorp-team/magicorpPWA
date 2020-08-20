@@ -1,0 +1,20 @@
+<div layout="column" layout-align="top center">
+  <h1>Les smiley :)</h1>
+  <div layout="rows" layout-align="top center" layout-padding layout-wrap >
+      <div *ngFor="let smiley of smileys" flex="none" style="background: #fff;" layout-margin>
+        {{ smiley.name }}
+        <button class="copybtn" attr.data-clipboard-text="{{smiley.val}}" aria-label="copy smiley" [ngSwitch]="smiley.copy" (click)="smiley.copy=true">
+          <img *ngSwitchCase="false" style="pointer-events: none;" src="/assets/img/icons/clipboard-text.svg">
+          <img *ngSwitchCase="true" style="pointer-events: none;" src="/assets/img/icons/clipboard-check.svg">
+        </button>
+      </div>
+  </div>
+</div>
+<div layout-align="top center" layout-padding layout-margin>
+  <h2>Tester le smiley ici :</h2>
+  <div>
+    <label>le smiley :</label>
+    <textarea type="text" maxlength="2000" rows="5" [(ngModel)]="letext"></textarea>
+  </div>
+  <h4>le résultat : <pre style="font: 400 13.3333px Arial;">{{ letext }}</pre></h4>
+</div>
