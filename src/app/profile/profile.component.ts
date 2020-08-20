@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../class/user';
-import { SignLogs } from '../class/sign-logs';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',

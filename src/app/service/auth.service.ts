@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Globals } from '../globals';
 
 interface Token {
@@ -56,6 +56,7 @@ export class AuthService {
       console.error('An error occurred:', error.error.message);
       return throwError('Unknown error' + error.error.message);
     }
+    if (!error.status) return throwError(`Server connexion error : ${error.statusText}`);
     if (error.status == 403)
       return throwError(`${error.error.msg} because ${error.error.detail}`);
     return throwError(`${error.error.msg}`);
