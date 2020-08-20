@@ -1,7 +1,7 @@
 <div class="page-content">
   <h1>Les smiley :)</h1>
   <div style="display:flex;-webkit-flex-wrap: wrap;flex-wrap: wrap;">
-      <div *ngFor="let smiley of smileys" class="mat-elevation-z4" style="background:#fff;padding:0 8px;margin:8px;border-radius:4px;">
+      <div *ngFor="let smiley of smileys" class="mat-app-background mat-elevation-z4" style="padding:0 8px;margin:8px;border-radius:4px;">
         {{ smiley.name }}
         <button mat-icon-button class="copybtn" attr.data-clipboard-text="{{smiley.val}}" aria-label="Copy smiley" [ngSwitch]="smiley.copy" (click)="smiley.copy=true">
           <mat-icon *ngSwitchCase="true" style="pointer-events: none;">assignment_turned_in</mat-icon>
@@ -13,7 +13,7 @@
     <h1>Tester le smiley :</h1>
     <div>
       <mat-label>Coller le smiley ici :</mat-label><br>
-      <textarea matInput class="mat-elevation-z4" style="background-color:#fff;border-radius:4px;" maxlength="2000" rows="5" [(ngModel)]="text"></textarea>
+      <textarea matInput class="mat-app-background mat-elevation-z4" style="border-radius:4px;" maxlength="2000" rows="5" [(ngModel)]="text"></textarea>
     </div>
     <h4>Le résultat : <pre style="font: 400 13.3333px Arial;">{{ text }}</pre></h4>
   </div>

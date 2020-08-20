@@ -1,31 +1,34 @@
-<mat-toolbar color="primary" class="mat-elevation-z2">
-  <button mat-icon-button aria-label="Main menu icon" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>{{ title | titlecase }}</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button aria-label="Menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-</mat-toolbar>
-<mat-drawer-container class="main-drawer-container" autosize>
-  <mat-drawer #drawer mode="{{ breakpointObserver.isMatched('(max-width: 599px)')? 'over' : 'side' }}">
-    <mat-nav-list style="width:240px">
-      <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-      <a mat-list-item routerLink="/smiley" routerLinkActive="active">Smiley</a>
-      <a mat-list-item routerLink="/team" routerLinkActive="active">Team</a>
-      <mat-divider></mat-divider>
-      <label style="color:rgb(189,189,189); margin: 8px 0 0 14px; display:block">Wiki / tutos</label>
-      <a mat-list-item routerLink="/arktuto" routerLinkActive="active">Ark tuto</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item href="https://batrenis.magicorp.fr" routerLinkActive="active">Batrenis</a>
-      <a mat-list-item href="https://code.magicorp.fr" routerLinkActive="active">Code</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item *ngIf="!authService.getToken()" routerLink="/signin" routerLinkActive="active">Sign in</a>
-      <a mat-list-item *ngIf="!authService.getToken()" routerLink="/signup" routerLinkActive="active">Sign up</a>
-      <a mat-list-item *ngIf="authService.getToken()" routerLink="/profile" routerLinkActive="active">Profile</a>
-      <a mat-list-item *ngIf="authService.getToken()" routerLink="/signout" routerLinkActive="active">Sign out</a>
-    </mat-nav-list>
-  </mat-drawer>
-  <router-outlet></router-outlet>
-</mat-drawer-container>
+<span [ngClass]="{'unicorn-dark-theme': isDarkTheme | async}">
+  <mat-toolbar color="primary" class="mat-elevation-z2">
+    <button mat-icon-button aria-label="Main menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ title | titlecase }}</span>
+    <span class="example-spacer"></span>
+    <mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">Dark theme</mat-slide-toggle>
+    <button mat-icon-button aria-label="Menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-drawer-container class="main-drawer-container" autosize>
+    <mat-drawer #drawer mode="{{ breakpointObserver.isMatched('(max-width: 599px)')? 'over' : 'side' }}">
+      <mat-nav-list style="width:240px">
+        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a mat-list-item routerLink="/smiley" routerLinkActive="active">Smiley</a>
+        <a mat-list-item routerLink="/team" routerLinkActive="active">Team</a>
+        <mat-divider></mat-divider>
+        <label style="color:rgb(189,189,189); margin: 8px 0 0 14px; display:block">Wiki / tutos</label>
+        <a mat-list-item routerLink="/arktuto" routerLinkActive="active">Ark tuto</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item href="https://batrenis.magicorp.fr" routerLinkActive="active">Batrenis</a>
+        <a mat-list-item href="https://code.magicorp.fr" routerLinkActive="active">Code</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item *ngIf="!authService.getToken()" routerLink="/signin" routerLinkActive="active">Sign in</a>
+        <a mat-list-item *ngIf="!authService.getToken()" routerLink="/signup" routerLinkActive="active">Sign up</a>
+        <a mat-list-item *ngIf="authService.getToken()" routerLink="/profile" routerLinkActive="active">Profile</a>
+        <a mat-list-item *ngIf="authService.getToken()" routerLink="/signout" routerLinkActive="active">Sign out</a>
+      </mat-nav-list>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+  </mat-drawer-container>
+</span>

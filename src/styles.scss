@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$magicorp-primary: mat-palette($mat-indigo);
-$magicorp-accent: mat-palette($mat-pink, A200, A100, A400);
+$magicorp-primary: mat-palette($mat-red);
+$magicorp-accent: mat-palette($mat-amber, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $magicorp-warn: mat-palette($mat-red);
@@ -35,7 +35,7 @@ $magicorp-theme: mat-light-theme((
 
 // NOTE: test here
 // Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey);
+$dark-primary: mat-palette($mat-red);
 $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
 $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme((
