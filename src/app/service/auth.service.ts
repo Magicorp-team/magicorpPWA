@@ -23,7 +23,7 @@ export class AuthService {
     const url = `${this.globals.apiUrl}/login`;
     return this.http.post<Token>(url, null, {
       headers: {
-        "Authorization": btoa(username + ":" + password)
+        "Authorization": "Basic " + btoa(username + ":" + password)
       }
     }).pipe(
       tap((newToken: Token) => {

@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import {BreakpointObserver} from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
