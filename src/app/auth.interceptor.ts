@@ -18,7 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.authService.getToken()
 
-    if (token)
+    // Add Bearer Authorization token if Authorization not set and request for api.magicorp.fr
+    if (token && !request.headers.get("Authorization") && /^(?:https?:\/\/)?(api.magicorp.fr)\/*/.test(request.url))
       return next.handle(request.clone({
         headers: request.headers.set("Authorization", "Bearer " + token)
       }));
