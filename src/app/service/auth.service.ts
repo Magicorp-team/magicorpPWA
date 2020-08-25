@@ -20,7 +20,7 @@ export class AuthService {
   ) { }
 
   setToken(username: string, password: string): Observable<Token> {
-    const url = `${this.globals.apiUrl}/login`;
+    const url = this.globals.apiUrl + '/login';
     return this.http.post<Token>(url, null, {
       headers: {
         "Authorization": "Basic " + btoa(username + ":" + password)

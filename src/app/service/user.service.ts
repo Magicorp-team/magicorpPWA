@@ -16,7 +16,7 @@ export class UserService {
   ) { }
 
   createUser(username: string, password: string) {
-    const url = `${this.globals.apiUrl}/register`;
+    const url = this.globals.apiUrl + '/register';
     return this.http.post<User>(url, {
       username: username,
       password: password,
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   getUser(): Observable<User> {
-    const url = `${this.globals.apiUrl}/users/info`;
+    const url = this.globals.apiUrl + '/users/info';
     return this.http.get<User>(url).pipe(
       catchError(this.handleError)
     );
