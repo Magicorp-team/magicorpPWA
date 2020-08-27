@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Globals } from '../globals';
+import { environment } from './../../environments/environment';
 import { User } from '../class/user';
 
 @Injectable({
@@ -11,12 +11,11 @@ import { User } from '../class/user';
 export class UserService {
 
   constructor(
-    public globals: Globals,
     private http: HttpClient
   ) { }
 
   createUser(username: string, password: string) {
-    const url = this.globals.apiUrl + '/register';
+    const url = environment.apiUrl + '/register';
     return this.http.post<User>(url, {
       username: username,
       password: password,
@@ -27,7 +26,7 @@ export class UserService {
   }
 
   getUser(): Observable<User> {
-    const url = this.globals.apiUrl + '/users/info';
+    const url = environment.apiUrl + '/users/info';
     return this.http.get<User>(url).pipe(
       catchError(this.handleError)
     );

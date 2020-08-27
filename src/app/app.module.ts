@@ -21,7 +21,6 @@ import { AuthInterceptor } from './auth.interceptor';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './modules/app-routing.module';
-import { Globals } from './globals'
 import { ArktutoComponent } from './arktuto/arktuto.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
@@ -68,7 +67,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule
   ],
   providers: [
-    Globals, {
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true

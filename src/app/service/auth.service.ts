@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Globals } from '../globals';
+import { environment } from './../../environments/environment';
 
 interface Token {
   id: number;
@@ -15,12 +15,11 @@ interface Token {
 export class AuthService {
 
   constructor(
-    public globals: Globals,
     private http: HttpClient
   ) { }
 
   setToken(username: string, password: string): Observable<Token> {
-    const url = this.globals.apiUrl + '/login';
+    const url = environment.apiUrl + '/login';
     return this.http.post<Token>(url, null, {
       headers: {
         "Authorization": "Basic " + btoa(username + ":" + password)
@@ -63,7 +62,7 @@ export class AuthService {
   }
 
   private setCookie(name, value, age) {
-    document.cookie = `${name}=${value};max-age=${age};domain=${this.globals.domain}`; // TODO: secure
+    document.cookie = `${name}=${value};max-age=${age};domain=${environment.domain}${environment.production? ';secure' : ''}`;
   }
 
   private getCookie(name) {
