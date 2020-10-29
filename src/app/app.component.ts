@@ -1,7 +1,6 @@
-import { Component, AfterViewInit, AfterContentChecked } from '@angular/core';
+import { Component, AfterContentChecked } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Observable, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,26 +8,25 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit, AfterContentChecked {
+export class AppComponent implements AfterContentChecked {
   title = 'magicorp';
-  private _darkTheme = new Subject<boolean>();
-  isDarkTheme: Observable<boolean> = this._darkTheme.asObservable();
+  isDarkTheme: boolean = false;
+  isDarkThemDefault: boolean;
   lastUrl = '';
 
   constructor(
     private route: ActivatedRoute,
     public authService: AuthService,
     public breakpointObserver: BreakpointObserver
-  ) { }
-
-  ngAfterViewInit(): void {
-    if (!localStorage.darkMode) this._darkTheme.next((window.matchMedia("(prefers-color-scheme: dark)")).matches);
-    else this._darkTheme.next(localStorage.darkMode == "true");
+  ) {
+    if (!localStorage.darkMode) this.isDarkTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    else this.isDarkTheme = localStorage.darkMode == "true";
+    this.isDarkThemDefault = this.isDarkTheme;
   }
 
   toggleDarkTheme(checked: boolean) {
     localStorage.darkMode = checked;
-    this._darkTheme.next(checked);
+    this.isDarkTheme = checked;
   }
 
   ngAfterContentChecked() {
