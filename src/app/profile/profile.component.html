@@ -1,8 +1,19 @@
 <div class="page-content">
   <h1>Profile</h1>
   <div>
-    <p *ngIf="user">Id : {{ user.id }}</p>
-    <p *ngIf="user">Username : {{ user.username }}</p>
+    <!-- user info -->
+    <div *ngIf="user">
+      <p>Id : {{ user.id }}</p>
+      <p>Username : {{ user.username }}</p>
+      <a *ngIf="!user.discord" mat-raised-button href="https://discord.com/api/oauth2/authorize?client_id=746359400633073764&redirect_uri=https%3A%2F%2Fwww.magicorp.fr%2Fprofile&response_type=code&scope=identify">Link discord</a>
+      <div *ngIf="user.discord">
+        <div>
+          <p>{{ user.discord.username }}#{{ user.discord.discriminator }}</p>
+          <img src="https://cdn.discordapp.com/avatars/{{ user.discord.id }}/{{ user.discord.avatar }}.png" alt="Discord avatar">
+        </div>
+        <button mat-raised-button color="warn" (click)="unlinkDiscord()">Unlink discord</button>
+      </div>
+    </div>
     <h2>Connexion history :</h2>
     <div class="mat-elevation-z8" style="width:300px;">
       <table mat-table [dataSource]="dataSource" matSort style="width:100%;">

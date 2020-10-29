@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   private setCookie(name, value, age) {
-    document.cookie = `${name}=${value};max-age=${age};domain=${environment.domain}${environment.production? ';secure' : ''}`;
+    document.cookie=`${name}=${value};max-age=${age};domain=${environment.domain}${environment.production? ';secure' : ''}`;
   }
 
   private getCookie(name) {
