@@ -22,7 +22,7 @@ export class AuthService {
     const url = environment.apiUrl + '/login';
     return this.http.post<Token>(url, null, {
       headers: {
-        "Authorization": "Basic " + btoa(username + ":" + password)
+        "Authorization": "Basic " + btoa(unescape(encodeURIComponent(username + ":" + password)))
       }
     }).pipe(
       tap((newToken: Token) => {
