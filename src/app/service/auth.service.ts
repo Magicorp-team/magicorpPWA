@@ -47,7 +47,7 @@ export class AuthService {
     // localStorage.removeItem("userid");
     // localStorage.removeItem("token");
     this.setCookie("token", null, 0);
-    this.setCookie("userId", null, 0);
+    //this.setCookie("userId", null, 0); // NOTE: not use
   }
 
   private handleError(error: HttpErrorResponse) {
